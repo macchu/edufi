@@ -6,12 +6,12 @@ describe Enrollment do
   let(:last_year) { Time.now.last_year }
   let(:tomorrow) { Time.now.tomorrow }
   
-  describe ".active_enrollments" do
+  describe ".active" do
     context "One inactive enrollment" do
       let!(:enrollment_1) { create(:enrollment, school: school, start_date: last_year, end_date: yesterday) }
 
       it "returns empty" do
-        expect(Enrollment.active_enrollments).to be_empty
+        expect(Enrollment.active).to be_empty
       end
     end
 
@@ -19,7 +19,7 @@ describe Enrollment do
         let!(:enrollment_1) { create(:enrollment, school: school, start_date: last_year, end_date: tomorrow) }
   
         it "returns enrollment_1" do
-          expect(Enrollment.active_enrollments).to include enrollment_1
+          expect(Enrollment.active).to include enrollment_1
         end
       end
   end
