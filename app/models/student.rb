@@ -12,4 +12,8 @@ class Student < ApplicationRecord
   def enrolled_courses
     cohorts.collect(&:name).join(', ')
   end
+
+  def active_enrollment?
+    !self.enrollments.active.empty?
+  end
 end
