@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[ show edit update destroy ]
-
+  before_action :set_transfer_student, only: :transfer
   # GET /students or /students.json
   def index
     @students = Student.all
@@ -47,6 +47,10 @@ class StudentsController < ApplicationController
     end
   end
 
+  def transfer
+
+  end
+
   # DELETE /students/1 or /students/1.json
   def destroy
     @student.destroy
@@ -60,6 +64,10 @@ class StudentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_student
       @student = Student.find(params[:id])
+    end
+
+    def set_transfer_student
+      @student = Student.find(params[:student_id])
     end
 
     # Only allow a list of trusted parameters through.
