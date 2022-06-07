@@ -20,7 +20,7 @@
   <% @student.enrollments.active.each do |enrollment| %>
     <br> <%= enrollment.cohort.name %>
   <% end %>
-  <%= link_to 'New enrollment', new_school_enrollment_path(@student.school_id) %>
+  <br><%= link_to 'New enrollment', new_school_enrollment_path(@student.school_id) %>
 </p>
 
 <%= link_to 'Edit', edit_student_path(@student) %> 
