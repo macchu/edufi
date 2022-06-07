@@ -11,14 +11,14 @@
       </div>
     <% end %>
     
-    <p><%= @student.full_name %> <%= @student.active_enrollment? %></p>
+    <p><%= @student.full_name %></p>
     <p><%= @student.display_school_name %></p>
     <% if @student.active_enrollment? %>
       <p>Student has active enrollments and may not transfer.</p>
     <% end %>
     <div class="field">
-      <%= form.text_field :school_id, disabled: @student.active_enrollment? %>
-      <%= form.collection_select(:school_id, School.all, :id, :name, prompt: true) %>
+      <%= form.label :school_id, 'New school' %>
+      <%= form.collection_select(:school_id, @schools, :id, :name, prompt: true, selected: nil) %>
     </div>
 
     <div class="actions">
