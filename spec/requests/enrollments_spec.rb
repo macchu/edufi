@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Enrollment Requests', type: :request do
   describe 'GET /enrollments' do
+    let(:school) { create(:school)}
     it 'returns a successful response' do
-      get enrollments_url
+      get school_enrollments_url(school)
 
       expect(response).to be_successful
     end
