@@ -78,10 +78,10 @@ RSpec.describe 'Enrollment Requests', type: :request do
 
     it 'deletes the enrollment and redirect to the index page' do
       expect {
-        delete enrollment_url(enrollment)
+        delete school_enrollment_url(enrollment.school, enrollment)
       }.to change { Enrollment.count }.by(-1)
 
-      expect(response).to redirect_to(enrollments_url)
+      expect(response).to redirect_to(school_enrollments_url)
     end
   end
 end
