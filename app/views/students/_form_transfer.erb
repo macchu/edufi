@@ -1,0 +1,28 @@
+<%= form_with(model: student, local: true) do |form| %>
+    <% if student.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+  
+        <ul>
+        <% student.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <p><%= @student.full_name %> <%= @student.active_enrollment? %></p>
+    <p><%= @student.display_school_name %></p>
+    <% if @student.active_enrollment? %>
+      <p>Student has active enrollments and may not transfer.</p>
+    <% end %>
+    <div class="field">
+      <%= form.label :school_id, 'New school' %>
+      <%= form.text_field :school_id, disabled: @student.active_enrollment? %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Finish', disabled: @student.active_enrollment?  %>
+    </div>
+  <% end %>
+  
