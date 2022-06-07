@@ -17,8 +17,8 @@
       <p>Student has active enrollments and may not transfer.</p>
     <% end %>
     <div class="field">
-      <%= form.label :school_id, 'New school' %>
       <%= form.text_field :school_id, disabled: @student.active_enrollment? %>
+      <%= form.collection_select(:school_id, School.all, :id, :name, prompt: true) %>
     </div>
 
     <div class="actions">
