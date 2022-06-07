@@ -48,7 +48,7 @@ class StudentsController < ApplicationController
   end
 
   def transfer
-
+    @schools = School.all
   end
 
   # DELETE /students/1 or /students/1.json
