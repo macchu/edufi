@@ -4,7 +4,7 @@ class CohortsController < ApplicationController
 
   # GET /cohorts or /cohorts.json
   def index
-    @cohorts = Cohort.all
+    @cohorts = Cohort.all.includes(:school, :teacher)
   end
 
   # GET /cohorts/1 or /cohorts/1.json
