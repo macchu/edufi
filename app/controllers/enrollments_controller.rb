@@ -27,7 +27,7 @@ class EnrollmentsController < ApplicationController
 
     respond_to do |format|
       if @enrollment.save
-        format.html { redirect_to school_enrollment_path(@enrollment), notice: "Enrollment was successfully created." }
+        format.html { redirect_to school_enrollment_path(@enrollment.school.id, @enrollment), notice: "Enrollment was successfully created." }
         format.json { render :show, status: :created, location: @enrollment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class EnrollmentsController < ApplicationController
   def update
     respond_to do |format|
       if @enrollment.update(enrollment_params)
-        format.html { redirect_to school_enrollment_path(@enrollment), notice: "Enrollment was successfully updated." }
+        format.html { redirect_to school_enrollment_path(@enrollment.school, @enrollment), notice: "Enrollment was successfully updated." }
         format.json { render :show, status: :ok, location: @enrollment }
       else
         format.html { render :edit, status: :unprocessable_entity }
