@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Enrollment Requests', type: :request do
   let(:school) { create(:school)}
-  
+  let(:cohort) { create(:cohort, school: school )}
+  let(:student) {create(:student, school: school)}
   describe 'GET /enrollments' do
     it 'returns a successful response' do
       get school_enrollments_url(school)
@@ -35,7 +36,7 @@ RSpec.describe 'Enrollment Requests', type: :request do
         post(school_enrollments_url(school.id), params: { enrollment: enrollment_params })
       }.to change { Enrollment.count }.by(1)
 
-      expect(response).to redirect_to(enrollment_url(Enrollment.last))
+      expect(response).to redirect_to(school_enrollment_url(Enrollment.last.school, Enrollment.last))
     end
   end
 
@@ -43,7 +44,7 @@ RSpec.describe 'Enrollment Requests', type: :request do
     let(:enrollment) { create(:enrollment) }
 
     it 'returns a successful response' do
-      get enrollment_url(enrollment)
+      get school_enrollment_url(enrollment.school, enrollment)
 
       expect(response).to be_successful
     end
@@ -53,7 +54,7 @@ RSpec.describe 'Enrollment Requests', type: :request do
     let(:enrollment) { create(:enrollment) }
 
     it 'returns a successful response' do
-      get edit_enrollment_url(enrollment)
+      get edit_school_enrollment_url(enrollment.school, enrollment)
 
       expect(response).to be_successful
     end
@@ -62,13 +63,13 @@ RSpec.describe 'Enrollment Requests', type: :request do
   describe 'PATCH /enrollments/:id' do
     let(:enrollment) { create(:enrollment) }
     let(:enrollment_params) { { start_date: new_start_date } }
-    let(:new_start_date) { 2.days.ago }
+    let(:new_start_date) { 2.days.ago.to_date }
 
     it 'updates the enrollment and redirects to the enrollment show page' do
-      patch enrollment_url(enrollment, params: { enrollment: enrollment_params })
+      patch school_enrollment_url(enrollment.school, enrollment, params: { enrollment: enrollment_params })
 
       expect(enrollment.reload.start_date).to eq(new_start_date)
-      expect(response).to redirect_to(enrollment_url(enrollment))
+      expect(response).to redirect_to(school_enrollment_url(enrollment.school, enrollment))
     end
   end
 
