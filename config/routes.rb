@@ -9,5 +9,4 @@ Rails.application.routes.draw do
   resources :schools do
     resources :enrollments
   end
-  resources :enrollments
 end
