@@ -3,7 +3,7 @@ class TeachersController < ApplicationController
 
   # GET /teachers or /teachers.json
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.all.includes(:school)
   end
 
   # GET /teachers/1 or /teachers/1.json
@@ -59,7 +59,7 @@ class TeachersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_teacher
-      @teacher = Teacher.find(params[:id])
+      @teacher = Teacher.includes(cohorts: :students).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
