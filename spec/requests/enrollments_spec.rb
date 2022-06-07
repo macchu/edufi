@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Enrollment Requests', type: :request do
+  let(:school) { create(:school)}
+  
   describe 'GET /enrollments' do
-    let(:school) { create(:school)}
     it 'returns a successful response' do
       get school_enrollments_url(school)
 
@@ -12,7 +13,7 @@ RSpec.describe 'Enrollment Requests', type: :request do
 
   describe 'GET /enrollments/new' do
     it 'returns a successful response' do
-      get new_enrollment_url
+      get new_school_enrollment_url(school)
 
       expect(response).to be_successful
     end
@@ -31,7 +32,7 @@ RSpec.describe 'Enrollment Requests', type: :request do
 
     it 'creates an enrollment and redirects to the enrollment show page' do
       expect {
-        post(enrollments_url, params: { enrollment: enrollment_params })
+        post(school_enrollments_url(school.id), params: { enrollment: enrollment_params })
       }.to change { Enrollment.count }.by(1)
 
       expect(response).to redirect_to(enrollment_url(Enrollment.last))
