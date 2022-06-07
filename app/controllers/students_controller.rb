@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   before_action :set_transfer_student, only: :transfer
   # GET /students or /students.json
   def index
-    @students = Student.all
+    @students = Student.all.includes(:cohorts, :school)
   end
 
   # GET /students/1 or /students/1.json
