@@ -15,7 +15,15 @@ class Student < ApplicationRecord
   end
 
   def active_enrollment?
-    self.enrollments.active.empty?
+    !self.enrollments.active.empty?
+  end
+
+  def display_school_name
+    if self.school.nil?
+      'Not currently enrolled'
+    else
+      self.school.name 
+    end
   end
 
   private 
