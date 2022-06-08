@@ -15,8 +15,9 @@
   <%= @school.location %>
 </p>
 
-<%= link_to 'Edit', edit_school_path(@school) %> |
-<%= link_to 'Back', schools_path %>
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@school.location}&zoom=14&size=400x400&key=#{Rails.application.credentials.google_maps_api_key}", alt: 'map'
+%>
+
 
 <h2>Current Cohorts</h2>
 
@@ -38,3 +39,7 @@
 
 <br>
 <%= link_to 'Manage Enrollments', school_enrollments_path(@school) %>
+
+<br>
+<%= link_to 'Edit', edit_school_path(@school) %> |
+<%= link_to 'Back', schools_path %>
