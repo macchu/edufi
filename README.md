@@ -16,8 +16,8 @@ Run `rails s` to start the server and `rspec` to run the test suite.
   Indicate to us where you have decided to place the transfer student tool.
 
   <ul>
-    <li>Transfer tool is accessed by clicking the 'Transfer student' link near the bottom of students#show page. Users
-      may also change the school id within students#edit.
+    <li><font color="red">Transfer tool is accessed by clicking the 'Transfer student' link near the bottom of students#show page. Users
+      may also change the school id within students#edit.</font>
     </li>
   </ul>
 </li>
@@ -27,8 +27,9 @@ Run `rails s` to start the server and `rspec` to run the test suite.
   You can decide whether the tests are broken or the application is broken and implement
   the fix accordingly.
   <ul>
-    <li style="color:blue"> Most errors involved enrollments. I thought the tests were wrong because they did not reflect the 
+    <li> <font color="red">Most errors involved enrollments. I thought the tests were wrong because they did not reflect the 
       necessity of nesting enrollments within school. I fixed the specs by changing the path being tested in the request specs.
+      </font>
     </li>
   </ul>
 </li>
@@ -37,11 +38,11 @@ Run `rails s` to start the server and `rspec` to run the test suite.
   BONUS #1: Feel free to refactor/update anything in the codebase that you think
   could be improved (it could either be about the code quality or the functionality)
   <ul>
-    <li style="color:blue"> Editing a student's cohort was broken, so I initially removed that field from student/:id/edit and added a link
-      to add an enrollment. Realizing now that I should add a tool for edit and destroy as well.
-    </li style="color:blue">
-    <li style="color:blue"> I ran Bullet to identify n+1 errors and fixed them with includes.</li>
-    <li style="color:blue"> Changed Enrollments.school_id from string to int. </li>
+    <li> <font color="red">Editing a student's cohort was broken, so I initially removed that field from student/:id/edit and added a link
+      to add an enrollment. Realizing now that I should add a tool for edit and destroy as well.</font>
+    </li>
+    <li> <font color="red">I ran Bullet to identify n+1 errors and fixed them with includes.</font></li>
+    <li> <font color="red">Changed Enrollments.school_id from string to int.</font> </li>
   </ul>
 </li>
 
@@ -50,7 +51,7 @@ Run `rails s` to start the server and `rspec` to run the test suite.
   School based on its location. Display the School map on the School show page.
   Please include your map api key if you execute this bonus.
   <ul>
-    <li style="color:blue">I did this using the Google api.</li>
+    <li> <font color="red">I did this using the Google api.</font></li>
   </ul>
 </li>
 
