@@ -23,5 +23,9 @@
   <br><%= link_to 'New enrollment', new_school_enrollment_path(@student.school_id, student_id: @student) %>
 </p>
 
+<p>
+<%= link_to 'Transfer student', student_transfer_path(@student) %>
+</p>
+
 <%= link_to 'Edit', edit_student_path(@student) %> 
 <%= link_to 'Back', students_path %>
