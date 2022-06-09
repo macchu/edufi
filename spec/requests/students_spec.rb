@@ -17,6 +17,16 @@ RSpec.describe 'Student Requests', type: :request do
     end
   end
 
+  describe 'GET /students/:id/transfer' do
+    let(:student) { create(:student) }
+
+    it 'returns a successful response' do
+      get student_transfer_url(student)
+
+      expect(response).to be_successful
+    end
+  end
+
   describe 'POST /students' do
     let(:school) { create(:school) }
     let(:student_params) {
