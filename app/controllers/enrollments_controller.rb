@@ -6,7 +6,7 @@ class EnrollmentsController < ApplicationController
 
   # GET /enrollments or /enrollments.json
   def index
-    @enrollments = @school.enrollments
+    @enrollments = @school.enrollments.includes(:student, :cohort)
   end
 
   # GET /enrollments/1 or /enrollments/1.json
@@ -62,7 +62,7 @@ class EnrollmentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_enrollment
-      @enrollment = Enrollment.find(params[:id])
+      @enrollment = Enrollment.includes(:student, :school, :cohort).find(params[:id])
     end
 
     def set_students_and_cohorts
