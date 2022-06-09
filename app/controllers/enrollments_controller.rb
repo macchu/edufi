@@ -2,6 +2,7 @@ class EnrollmentsController < ApplicationController
   before_action :set_school
   before_action :set_students_and_cohorts
   before_action :set_enrollment, only: %i[ show edit update destroy ]
+  before_action :set_student, only: :new
 
   # GET /enrollments or /enrollments.json
   def index
@@ -14,7 +15,7 @@ class EnrollmentsController < ApplicationController
 
   # GET /enrollments/new
   def new
-    @enrollment = @school.enrollments.build
+    @enrollment = @school.enrollments.build(student: @student)
   end
 
   # GET /enrollments/1/edit
@@ -71,6 +72,10 @@ class EnrollmentsController < ApplicationController
 
     def set_school
       @school = School.find(params[:school_id])
+    end
+
+    def set_student
+      @student = Student.find(params[:student_id]) if params[:student_id]
     end
 
     # Only allow a list of trusted parameters through.
